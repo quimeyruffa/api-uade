@@ -1,0 +1,5 @@
+body{
+  background: radial-gradient( circle 1200px at 46.9% 54.8%,  rgba(0,102,255,1) 0%, rgba(169,214,250,1) 100.2% );
+  background-repeat:no-repeat;
+  background-size:100% 200%;
+}

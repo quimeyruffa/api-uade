@@ -1,0 +1,104 @@
+.form-container-signUp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1900px;
+    height: 500px;
+}
+
+.form-container-signUp .form-container{
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color:#fff;
+    border-radius: 10%;
+    width: 480px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.185);
+}
+.form-container-signUp .form-container div{
+    display: flex;
+    width: 402px;
+    padding:0.5em;
+    justify-content: center;
+    flex-direction: row;
+}
+.form-container-signUp .form-container div div{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container-signUp .form-container div div input{
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.418) !important;
+    height: 20px;
+    border:none;
+    color:#383838;
+    border-radius: 10px;
+    padding: 0.5em;
+    font-family:'Lato';
+    letter-spacing:1px;
+    font-weight:bolder;
+    font-size: 12px;
+}
+.form-container-signUp .form-container div div span{
+    font-family:'Lato';
+    letter-spacing:1px;
+    margin-bottom:5px;
+    font-weight:bolder;
+    font-size: 14px;
+    color:#fff;
+}
+
+.form-container-signUp .form-container div div  button{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0167FF;
+    color:#fff;
+    border:none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius:60%;
+    transition: 0.2s;
+
+}
+.form-container-signUp .form-container div div button:hover{
+    color: #0167FF;
+    background-color:#fff;
+}
+.form-container-signUp .form-container div.button-container {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container-signUp .form-container div.button-container  div.button{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container-signUp .form-container div.button-container  div.button button .icon{
+    width: 30px;
+    height: 30px;
+}
+
+.form-container-signUp .svg{
+    margin-right: 230px;
+    height: 600px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

@@ -1,0 +1,43 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    width: 1840px;
+    font-family:'Lato';
+    letter-spacing:1px;
+    font-weight:bolder;
+    font-size: 25px;
+    flex-direction: row;
+    color:#fff;
+}
+.navbar .brand-logo{
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    padding-left: 30px;
+}
+
+.navbar .icon-action{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.navbar .icon-action div .link-action {
+    text-decoration: none;
+    font-family:'Lato';
+    color:#fff;
+    letter-spacing:1px;
+    font-weight:bold;
+    font-size: 16px;
+    flex-direction: row;
+}
+
+.navbar .icon-action div{
+    width: 640px;
+    height: 40px;
+    cursor: pointer;
+}

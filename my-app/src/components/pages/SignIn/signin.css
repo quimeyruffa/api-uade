@@ -1,0 +1,130 @@
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1700px;
+    height: 500px;
+}
+
+.form-container div{
+    width: 50%;
+}
+
+.form-container div.form-aux{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px;
+}
+
+.form-container div.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2em;
+    padding-left: 50px;
+    color:#fff;
+    border-radius: 10%;
+    width: 302px;
+    height: 380px;
+    background-color: rgba(255, 255, 255, 0.185);
+
+}
+
+.form-container div.form label{
+    font-family:'Lato';
+    letter-spacing:1px;
+    margin:1em;
+    font-weight:bolder;
+    font-size: 18px;
+    color:#fff;
+}
+
+.form-container div.form input{
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.418) !important;
+    height: 20px;
+    border:none;
+    width: 280px;
+    color:#383838;
+    border-radius: 10px;
+    padding: 0.5em;
+    font-family:'Lato';
+    letter-spacing:1px;
+    font-weight:bolder;
+    font-size: 15px;
+
+}
+
+.form-container div.form  .recuperar-contraseña a{
+    padding-top:1em;
+    padding-bottom:1em;
+    width: 280px;
+    text-decoration: none;
+    color:#383838;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family:'Lato';
+    letter-spacing:1px;
+    font-weight:bolder;
+    font-size: 14px;
+}
+
+.form-container div.form .button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    width: 295px;
+}
+
+.form-container div.form .button button{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0167FF;
+    color:#fff;
+    border:none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius:60%;
+    transition: 0.2s;
+}
+
+.form-container div.form .button button:hover{
+    color: #0167FF;
+    background-color: #fff;
+}
+.form-container .link{
+    display: flex;
+    margin-top: 15px;
+    width: 295px;
+    align-items: center;
+    justify-content: center;
+}
+.form-container .short-cut-signUp{
+    text-decoration: none;
+    color:#fff;
+    font-family: 'Lato';
+    font-weight: bold;
+    transform: color 0.02s;
+}
+.form-container .short-cut-signUp:hover{
+    color:#6c63ff;
+}
+.form-container div.form button  .icon{
+    width: 35px;
+    height: 35px;
+}
+
+.form-container .svg{
+    margin-top: 150px;
+    height: 600px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
