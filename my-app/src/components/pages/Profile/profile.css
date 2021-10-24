@@ -1,0 +1,197 @@
+.container-profile{
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+    width: 1900px;
+    height: 500px;
+}
+
+/* PADRES */
+.container-profile .profile-parent{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-profile .profile-parent .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+    border-radius: 30px;
+    background-color: #0D335D;
+}
+.container-profile .profile-parent .container div{
+    margin:1.5em;
+    display:flex;
+    flex-direction: column;
+    width: 220px;
+}
+.container-profile .profile-parent .container div label{
+    margin-right: 20px;
+    font-family: 'Lato';
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 17px;
+    color:#C1A1D3;
+}
+
+.container-profile .profile-parent .container div span{
+    margin-right: 20px;
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color:#FFF3E6;
+}
+.container-profile .profile-parent .container  span{
+    font-family: 'Lato';
+    font-weight: bolder;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color:#FFF3E6;
+}
+.container-profile .profile-parent .container img{
+    height: 170px;
+    width: 190px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+/* HIJOS */
+.container-profile .profile-sons{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+ .container-profile .profile-sons .header{
+     width: 100%;
+     margin-bottom: 20px;
+     display: flex;
+     justify-content: flex-start;
+     flex-direction:row;
+     font-family: 'Lato';
+     font-weight: bolder;
+     font-size: 25px;
+     letter-spacing: 1px;
+     color:#FFF3E6; 
+    
+ }
+
+ .container-profile .profile-sons .header button{
+     width: 25px;
+     height: 25px;
+     margin-left:10px;
+     cursor: pointer; 
+     border-radius: 25px;
+     display: flex;
+     align-content: center;
+     justify-content: center;
+     background-color: #fff;
+     border:none;
+     color:#000;
+     font-size: 21px;
+     transition: color 0.3s ease-in;
+
+ }
+
+ 
+ .container-profile .profile-sons .header button:hover{
+    background-color: #000;
+    color:#fff;
+ }
+
+ .container-profile .profile-sons .container-sons-info{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    width: 300px;
+    border-radius: 30px;
+    padding: 1em;
+    background-color: #0D335D;
+    transition: background-color 0.3s ease-in;
+ }
+ .container-profile .profile-sons .container-sons-info .card-sons:hover{
+    background-color: #0d325d93;
+ }
+ .container-profile .profile-sons .container-sons-info .card-sons div{
+    margin:15px;
+    display:flex;
+    flex-direction: column;
+    width: 270px;
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons div label{
+    margin-right: 20px;
+    font-family: 'Lato';
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 16px;
+    color:#C1A1D3;
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons div span{
+    font-family: 'Lato';
+    font-weight: bolder;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color:#FFF3E6; 
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons  span{
+    font-family: 'Lato';
+    font-weight: bolder;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color:#FFF3E6; 
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons div.button{
+    flex-direction: row;
+    height: 20px;
+ }
+
+ .container-profile .profile-sons .container-sons-info .card-sons div.button button{
+     width: 20px;
+     height: 20px;
+     cursor:pointer;
+     border:none;
+     display:flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 20px;
+     background-color: #fff;
+     color:#000;
+     font-family: 'Lato';
+     font-weight: bold;
+     transition: color 0.3s ease-in;
+ }
+
+.container-profile .profile-sons .container-sons-info .card-sons div.button button:hover{
+    background-color: #000;
+    color:#fff;
+}
+
+ .container-profile .profile-sons .container-sons-info .card-sons img{
+    height: 150px;
+    width: 90px;
+    margin-top:20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+ }

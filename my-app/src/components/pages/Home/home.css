@@ -27,9 +27,7 @@
     flex-direction: column;
     color:#fff;
     border-radius: 10%;
-    width: 1100px;
-    height: 850px;
-    background-color: rgba(0, 102, 255, 0.205);
+    
 }
 
 .container-articulos .title-calendario span{

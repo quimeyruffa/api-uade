@@ -14,7 +14,7 @@ const Navbar = () => {
                 <div> <Link to='/turnos' className='link-action' >Mis turnos</Link> </div>
                 <div> <Link to='/vacunas' className='link-action' >Mis vacunas</Link> </div>
                 <div> <Link to='/' className='link-action' >Home</Link> </div>
-                <div> <Link to='/signIn' className='link-action' >Hola usuario!</Link> </div>
+                <div> <Link to='/profile' className='link-action' >Hola usuario!</Link> </div>
             </div>
         </div>
 

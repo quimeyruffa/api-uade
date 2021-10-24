@@ -40,4 +40,7 @@
     width: 640px;
     height: 40px;
     cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
