@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1em;
-    width: 1840px;
+    padding-bottom: 1em;
+    width: 100%;
     font-family:'Lato';
     letter-spacing:1px;
     font-weight:bolder;

@@ -8,7 +8,6 @@ const Profile = ({ token, email }) => {
     const [user, setUser] = useState([]);
     const [hijos, setHijos] = useState([]);
     useEffect(() => {
-        console.log('EMAIL', email)
         const api = async () => await fetch('http://localhost:4000/api/users/userByMail', {
             method: 'POST',
             headers: {
@@ -96,6 +95,13 @@ const Profile = ({ token, email }) => {
                                 <div className='button'>
                                     <label >Enfermedades Cronicas </label>
                                     <button>...</button>
+                                </div>
+                                <div className='button'>
+                                    <label >Calendario de Vacunacion </label>
+                                    <button onClick={() =>{
+                                        localStorage.setItem('idChild', hijo._id)
+                                        window.location.href ='./calendario'
+                                    }}>...</button>
                                 </div>
                             </div>
                         )

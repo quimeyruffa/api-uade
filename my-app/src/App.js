@@ -1,19 +1,28 @@
 import { useState } from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { useEffect } from 'react';
 import Navbar from './components/Navbar'
 import SignIn from './components/pages/SignIn/SignIn';
 import SignUp from './components/pages/SingUp/SignUp';
 import Home from './components/pages/Home/Home';
 import Profile from './components/pages/Profile/Profile';
+import  Calendario  from './components/pages/CalendarioVacunacion/Calendario';
+
 function App() {
-  const [token] = useState(localStorage.getItem('token'))
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    setToken(token)
+    console.log(token)
+  }, [])
+
+  const [token, setToken] = useState()
   const [email, setEmail] = useState('')
   const history = createBrowserHistory();
   return (
@@ -21,18 +30,11 @@ function App() {
       <div className='container-fluid'>
         <Navbar />
         <Switch>
-          <Route exact path='/signIn'  >
-            {token === '' ? <Redirect to="/" /> : <SignIn   email={email} setEmail={setEmail}/>}
-          </Route>
-          <Route exact path='/signUp' >
-            <SignUp />
-          </Route>
-          <Route exact path='/profile' >
-            <Profile token={token} email={localStorage.getItem('email')}/>
-          </Route>
-          <Route exact path='/' >
-            {token !== '' ? <Home /> : <SignIn  email={email} setEmail={setEmail}/>}
-          </Route>
+          <Route exact path='/signIn'> <SignIn email={email} setEmail={setEmail} /> </Route>
+          <Route exact path='/signUp' > <SignUp /> </Route>
+          <Route exact path='/profile' > <Profile token={token} email={localStorage.getItem('email')} /></Route>
+          <Route exact path='/calendario'><Calendario/> </Route>
+          <Route exact path='/'> <Home /> </Route>
         </Switch>
       </div>
     </Router>

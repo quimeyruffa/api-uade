@@ -91,6 +91,36 @@ exports.getChild = async function (req, res, next) {
         return res.status(400).json({ status: 400, message: "User Child was Unsuccesfull" })
     }
 }
+exports.getVaccine = async function (req, res, next) {
+    try{
+        var searchedVaccine = await UserService.getVaccine(req.body.id)
+        return res.status(201).json({searchedVaccine, message: "Succesfully Searched Vaccine" })
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        console.log(e)
+        return res.status(400).json({ status: 400, message: "Searched Vaccine was Unsuccesfull" })
+    }
+}
+
+exports.setVaccineChild = async function (req, res, next) {
+    var Vaccine = {
+        child:req.body.child,
+        nameVaccine: req.body.name,
+        dateChild: req.body.dateChild,
+        lugar: req.body.lugar,
+        fechaVacunacion: req.body.fechaVacunacion
+    }
+    try{
+        var createVaccine = await UserService.createVaccine(Vaccine);
+        return res.status(201).json({ createVaccine, message: "Succesfully Created Vaccine" })
+    }catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        console.log(e)
+        return res.status(400).json({ status: 400, message: "Create Vaccine was Unsuccesfull" })
+    }
+
+}
+
 
 exports.updateUser = async function (req, res, next) {
 

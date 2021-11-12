@@ -1,10 +1,11 @@
 import { CgEnter } from 'react-icons/cg';
 import { ReactComponent as SVG } from '../../svg/padreEhijo.svg';
-import { Link, Redirect } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import { useState} from 'react';
 import './signin.css'
-const SignIn = ({ email, setEmail }) => {
-    
+
+const SignIn = ({email, setEmail}) => {
+  
     const [password, setPassword] = useState();
     const submit = async () => {
         await fetch('http://localhost:4000/api/users/login', {
@@ -17,12 +18,12 @@ const SignIn = ({ email, setEmail }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                alert(data.message)
+                
                 if ('Invalid username or password' !== data.message) {
 
                     localStorage.setItem('token', data.loginUser.token);
-                    localStorage.setItem('email', email)
-                    
+                    localStorage.setItem('email', email);
+                    window.location.href = '/';
                 }
             })
     }

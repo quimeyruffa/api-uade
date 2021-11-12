@@ -3,6 +3,7 @@ var User = require('../models/User.model');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const Child = require('../models/Child.model');
+const Vaccine = require('../models/Vaccine.model');
 
 // Saving the context of this module inside the _the variable
 _this = this
@@ -87,6 +88,36 @@ exports.createChild = async function (child){
     }
 }
 
+exports.createVaccine = async function (vaccine){
+    var newVaccine = new Vaccine({
+        child:vaccine.child,
+        nameVaccine: vaccine.name,
+        dateChild: vaccine.dateChild,
+        lugar: vaccine.lugar,
+        fechaVacunacion: vaccine.fechaVacunacion
+    });
+    try {
+        var newVaccine = await newVaccine.save()
+        return newVaccine._id;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Creating Vaccine")
+    }
+}
+
+exports.getVaccine = async function(id){
+    var _details = await Vaccine.find({
+        child: id
+    });
+    try{
+        return _details;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Searching Vaccine")
+    }
+}
 exports.getChild = async function(token){
     var _details = await Child.find({
         parent: token
