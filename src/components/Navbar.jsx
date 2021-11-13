@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+    background:'linear-gradient(55deg, #008CFF 30%, #E2E7FF 90%)'
+
   },
   logoLg: {
     display: "none",
@@ -43,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   input: {
-    color: "white",
+    color: "#544179",
+    fontWeight: "bold",
     marginLeft: theme.spacing(1),
   },
   cancel: {
@@ -60,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   icons: {
     alignItems: "center",
     display: (props) => (props.open ? "none" : "flex"),
+    color:'#544179'
   },
   badge: {
     marginRight: theme.spacing(2),
@@ -73,11 +77,9 @@ const Navbar = () => {
     <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.logoLg}>
-          Lama Dev
+        Healthy
         </Typography>
-        <Typography variant="h6" className={classes.logoSm}>
-          LAMA
-        </Typography>
+
         <div className={classes.search}>
           <Search />
           <InputBase placeholder="Search..." className={classes.input} />
@@ -88,12 +90,6 @@ const Navbar = () => {
             className={classes.searchButton}
             onClick={() => setOpen(true)}
           />
-          <Badge badgeContent={4} color="secondary" className={classes.badge}>
-            <Mail />
-          </Badge>
-          <Badge badgeContent={2} color="secondary" className={classes.badge}>
-            <Notifications />
-          </Badge>
           <Avatar
             alt="Remy Sharp"
             src="https://images.pexels.com/photos/8647814/pexels-photo-8647814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"

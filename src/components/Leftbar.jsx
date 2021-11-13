@@ -55,43 +55,24 @@ const Leftbar = () => {
     <Container className={classes.container}>
       <div className={classes.item}>
         <Home className={classes.icon} />
-        <Typography className={classes.text}>Homepage</Typography>
+        <Typography className={classes.text}>Pagina principal</Typography>
       </div>
       <div className={classes.item}>
         <Person className={classes.icon} />
-        <Typography className={classes.text}>Friends</Typography>
+        <Typography className={classes.text}>Perfil</Typography>
       </div>
       <div className={classes.item}>
         <List className={classes.icon} />
-        <Typography className={classes.text}>Lists</Typography>
+        <Typography className={classes.text}>Niños</Typography>
       </div>
       <div className={classes.item}>
         <PhotoCamera className={classes.icon} />
-        <Typography className={classes.text}>Camera</Typography>
+        <Typography className={classes.text}>Calendario de vacunacion</Typography>
       </div>
-      <div className={classes.item}>
-        <PlayCircleOutline className={classes.icon} />
-        <Typography className={classes.text}>Videos</Typography>
-      </div>
+
       <div className={classes.item}>
         <TabletMac className={classes.icon} />
-        <Typography className={classes.text}>Apps</Typography>
-      </div>
-      <div className={classes.item}>
-        <Bookmark className={classes.icon} />
-        <Typography className={classes.text}>Collections</Typography>
-      </div>
-      <div className={classes.item}>
-        <Storefront className={classes.icon} />
-        <Typography className={classes.text}>Market Place</Typography>
-      </div>
-      <div className={classes.item}>
-        <Settings className={classes.icon} />
-        <Typography className={classes.text}>Settings</Typography>
-      </div>
-      <div className={classes.item}>
-        <ExitToApp className={classes.icon} />
-        <Typography className={classes.text}>Logout</Typography>
+        <Typography className={classes.text}>Controles pedriaticos</Typography>
       </div>
     </Container>
   );

@@ -4,7 +4,7 @@ import Feed from "./components/Feed";
 import Leftbar from "./components/Leftbar";
 import Navbar from "./components/Navbar";
 import Rightbar from "./components/Rightbar";
-
+import {ReactComponent as Svg} from "./svg/manchas.svg"
 const useStyles = makeStyles((theme) => ({
   right: {
     [theme.breakpoints.down("sm")]: {
@@ -23,7 +23,7 @@ const App = () => {
           <Leftbar />
         </Grid>
         <Grid item sm={7} xs={10}>
-          <Feed />
+          <Feed style={{zIndex:'10'}}/>
         </Grid>
         <Grid item sm={3} className={classes.right}>
           <Rightbar />
