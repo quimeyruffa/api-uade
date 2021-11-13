@@ -73,9 +73,10 @@ const Add = () => {
         <Container className={classes.container}>
           <form className={classes.form} autoComplete="off">
             <div className={classes.item}>
+              <h1>Registra a  tu niño!</h1>
               <TextField
                 id="standard-basic"
-                label="Title"
+                label="Nombre completo"
                 size="small"
                 style={{ width: "100%" }}
               />
@@ -132,14 +133,14 @@ const Add = () => {
                 style={{ marginRight: 20 }}
                 onClick={() => setOpenAlert(true)}
               >
-                Create
+                Agregar
               </Button>
               <Button
                 variant="outlined"
                 color="secondary"
                 onClick={() => setOpen(false)}
               >
-                Cancel
+                Cancelar
               </Button>
             </div>
           </form>

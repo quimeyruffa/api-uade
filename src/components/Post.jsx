@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Post = ({ img, title, text, component }) => {
+const Post = ({ img, title, text, component, state }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -47,14 +47,16 @@ const Post = ({ img, title, text, component }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
+      {state ?
+      
       <CardActions className={classes.component}>
         <Button size="small" color="primary">
-          Share
+          Ver mas
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        
       </CardActions>
+      :''
+    }
     </Card>
   );
 };
