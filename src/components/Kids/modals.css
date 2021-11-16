@@ -1,0 +1,125 @@
+.modalBackground {
+    width: 100vw;
+    height: 120vh;
+    background-color: rgba(200, 200, 200, 0.253);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer {
+    width: 500px;
+    height: 600px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }
+  
+  .modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .modalContainer .body {
+    display: flex;
+    height: 900px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
+  .modalContainer .body div{
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+  }
+  .modalContainer .body div span{
+      width: 200px;
+      align-items: flex-start;
+      display: flex;
+      font-family: 'Lato';
+      font-weight: bold; 
+  }
+
+  .modalContainer .body div span{
+    width: 200px;
+  }
+
+  .modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer .footer button {
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #cancelBtn {
+    background-color: crimson;
+  }
+
+
+.modalContainer .body .alergias{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.modalContainer .body div.render-alergias{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.modalContainer .body .render-alergias div{
+  padding: 7px;
+  justify-content:center;
+  display: flex;
+  align-items: center;
+  margin:3px;
+  background-color:rgba(128, 216, 249, 0.671);
+  color:rgba(6, 116, 156, 0.918);
+  border-radius:5px;
+}
+.modalContainer .body .render-alergias div button{
+  background-color:black;
+  justify-content:center;
+  display: flex;
+  align-items: center;
+  cursor:pointer;
+  color:white;
+  font-weight: bold;
+  border:none;
+  height:20px;
+  width: 20px;
+  margin-left:2px;
+  border-radius:20px;
+}

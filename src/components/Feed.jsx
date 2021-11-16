@@ -18,8 +18,8 @@ const Feed = () => {
     <Container className={classes.container}>
 
       <Post title={"Bienvenidos padres!"} state={false} component={<Svg style={{width:'40%'}}/>}  text="  Bienvenidos a Healty, una aplicacion donde los padres pueden mantener el registro de las vacunas y controles pedriaticos de los chicos. Tambien podran comparar  los controles de sus hijos con los percentiles de Curva de Crecimiento ofrecidos por la OMS"/>
-      <Post title="Registra a tu chico"  state={false} component={<Svg1 style={{width:'40%'}}/>} text="Para registrar a tus chicos tenes un acceso directo en la parte de abajo a la derecha de la pagina, el boton mas (+) te desplegara un formulario para llenarlo con los datos de tus hijos"/>
-      <Post title="Controles de percentiles" state={true} component={<Svg2 style={{width:'40%'}}/>}  text="Tambien podran comparar  los controles de sus hijos con los percentiles de Curva de Crecimiento ofrecidos por la OMS"/>
+      <Post title="Registra a tu chico"  state={false} component={<Svg1 style={{width:'40%'}}/>} text="Para registrar a tus chicos tenes un acceso directo en la parte de abajo a la derecha de la pagina, el boton mas (+) te desplegara un formulario para llenarlo con los datos de tus hijos. Dentro de sus perfiles podran acceder al calendario de vacunacion y  controles pedriaticos de cada niño"/>
+      <Post title="Controles de percentiles" state={false} component={<Svg2 style={{width:'40%'}}/>}  text="Tambien podran comparar  los controles de sus hijos con los percentiles de Curva de Crecimiento ofrecidos por la OMS"/>
     </Container>
   );
 };

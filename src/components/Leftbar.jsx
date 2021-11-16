@@ -1,17 +1,13 @@
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import {
   Bookmark,
-  List,
-  ExitToApp,
   Home,
+  CalendarToday,
   Person,
-  PhotoCamera,
-  PlayCircleOutline,
-  Settings,
-  Storefront,
-  TabletMac,
+  Group
 } from "@material-ui/icons";
-
+import styled from 'styled-components';
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100vh",
@@ -34,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(3),
       cursor: "pointer",
     },
+    textDecoration: 'none',
   },
   icon: {
     marginRight: theme.spacing(1),
@@ -49,33 +46,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const Leftbar = () => {
   const classes = useStyles();
   return (
     <Container className={classes.container}>
-      <div className={classes.item}>
+      <LinkAux to='/home' className={classes.item}>
         <Home className={classes.icon} />
-        <Typography className={classes.text}>Pagina principal</Typography>
-      </div>
-      <div className={classes.item}>
+        <Typography className={classes.text}>
+          <h3>
+            Pagina principal
+          </h3>
+        </Typography>
+      </LinkAux>
+      <LinkAux to='/profile' className={classes.item}>
         <Person className={classes.icon} />
-        <Typography className={classes.text}>Perfil</Typography>
-      </div>
-      <div className={classes.item}>
-        <List className={classes.icon} />
-        <Typography className={classes.text}>Niños</Typography>
-      </div>
-      <div className={classes.item}>
-        <PhotoCamera className={classes.icon} />
-        <Typography className={classes.text}>Calendario de vacunacion</Typography>
-      </div>
-
-      <div className={classes.item}>
-        <TabletMac className={classes.icon} />
-        <Typography className={classes.text}>Controles pedriaticos</Typography>
-      </div>
+        <Typography className={classes.text}>
+          <h3>
+            Perfil
+          </h3>
+        </Typography>
+      </LinkAux>
+      <LinkAux to='/children' className={classes.item}>
+        <Group className={classes.icon} />
+        <Typography className={classes.text}>
+          <h3>
+            Niños
+          </h3>
+        </Typography>
+      </LinkAux>
     </Container>
   );
 };
 
 export default Leftbar;
+
+const LinkAux = styled(Link)`
+  margin-left: 1%;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  color: black;
+  text-decoration:none;
+  cursor: pointer;
+  h3 {
+    font-weight: 300;
+  }
+  svg {
+    font-size: 1.5rem;
+    margin-top: 3%;
+  }
+`;

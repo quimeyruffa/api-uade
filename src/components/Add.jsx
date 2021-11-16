@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     width: 500,
-    height: 550,
+    height: '100%',
     backgroundColor: "white",
     position: "absolute",
     top: 0,
@@ -51,6 +51,17 @@ function Alert(props) {
 }
 
 const Add = () => {
+  const [nombre, setNombre] = useState();
+  const [date, setDate] = useState();
+  const [blood, setBlood] = useState();
+  let email = localStorage.getItem('email')
+
+  const [alergia, setAlergia] = useState();
+  const [alergias, setAlergias] = useState([]);
+
+  const [enfermedad, setEnfermedad] = useState();
+  const [enfermedades, setEnfermedades] = useState([]);
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
@@ -62,9 +73,58 @@ const Add = () => {
 
     setOpenAlert(false);
   };
+  //ALERGIAS
+  const addAlergia = () => {
+    if (alergia !== null) {
+      alergias.push(alergia)
+      setAlergia(null)
+    }
+    setAlergia(null)
+  }
+
+  const handleRemoveItem = (e) => {
+    const name = e.target.getAttribute("name")
+    setAlergias(alergias.filter(item => item !== name));
+  };
+
+  //ENFERMEDADES
+  const addEnfermedad = () => {
+    if (enfermedad !== null) {
+      enfermedades.push(enfermedad)
+      setEnfermedad(null)
+    }
+    setEnfermedad(null)
+  }
+
+  const handleRemoveItemEnfermedad = (e) => {
+    const name = e.target.getAttribute("name")
+    setEnfermedades(enfermedades.filter(item => item !== name));
+  };
+
+  //submit 
+  const submit = async () => {
+        
+    let array = {parent:email, name:nombre, birth: date, bloodType:blood, alergias: alergias, enfermedades: enfermedades }
+    console.log(array)
+    await fetch('http://localhost:4000/api/users/createChild', {
+        method : 'POST',
+        mode : 'cors',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+         body: JSON.stringify(array)
+        })
+         .then((res) => res.json())
+         .then((data) => {
+             console.log(data.message)
+             setOpenAlert(true)
+             setOpenAlert(false);
+         })
+ }
   return (
     <>
-      <Tooltip title="Add" aria-label="add" onClick={() => setOpen(true)}>
+      <Tooltip title="Registra a tu hijo" aria-label="add" onClick={() => setOpen(true)}>
         <Fab color="primary" className={classes.fab}>
           <AddIcon />
         </Fab>
@@ -74,64 +134,12 @@ const Add = () => {
           <form className={classes.form} autoComplete="off">
             <div className={classes.item}>
               <h1>Registra a  tu niño!</h1>
-              <TextField
-                id="standard-basic"
-                label="Nombre completo"
-                size="small"
-                style={{ width: "100%" }}
-              />
-            </div>
-            <div className={classes.item}>
-              <TextField
-                id="outlined-multiline-static"
-                multiline
-                rows={4}
-                defaultValue="Tell your story..."
-                variant="outlined"
-                label="Description"
-                size="small"
-                style={{ width: "100%" }}
-              />
-            </div>
-            <div className={classes.item}>
-              <TextField select label="Visibility" value="Public">
-                <MenuItem value="Public">Public</MenuItem>
-                <MenuItem value="Private">Private</MenuItem>
-                <MenuItem value="Unlisted">Unlisted</MenuItem>
-              </TextField>
-            </div>
-            <div className={classes.item}>
-              <FormLabel component="legend">Who can comment?</FormLabel>
-              <RadioGroup>
-                <FormControlLabel
-                  value="Everybody"
-                  control={<Radio size="small" />}
-                  label="Everybody"
-                />
-                <FormControlLabel
-                  value="My Friends"
-                  control={<Radio size="small" />}
-                  label="My Friends"
-                />
-                <FormControlLabel
-                  value="Nobody"
-                  control={<Radio size="small" />}
-                  label="Nobody"
-                />
-                <FormControlLabel
-                  value="Custom"
-                  disabled
-                  control={<Radio size="small" />}
-                  label="Custom (Premium)"
-                />
-              </RadioGroup>
-            </div>
-            <div className={classes.item}>
+              <div className={classes.item}>
               <Button
                 variant="outlined"
                 color="primary"
                 style={{ marginRight: 20 }}
-                onClick={() => setOpenAlert(true)}
+                onClick={submit}
               >
                 Agregar
               </Button>
@@ -143,6 +151,117 @@ const Add = () => {
                 Cancelar
               </Button>
             </div>
+              <br /> <br />
+              <span>Nombre completo</span>
+              <TextField
+                id="standard-basic"
+                size="small"
+                style={{ width: "100%" }}
+                onChange={(e) => setNombre(e.target.value)}
+              />
+              <br /><br />
+              <span>Fecha de nacimiento</span>
+              <TextField
+                id="standard-basic"
+                label=""
+                type="date"
+                size="small"
+                style={{ width: "100%" }}
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <br /><br />
+              <span>Grupo sanguineo</span>
+              <TextField
+                id="standard-basic"
+                label=""
+                type="text"
+                size="small"
+                style={{ width: "100%" }}
+                onChange={(e) => setBlood(e.target.value)}
+              />
+            </div>
+
+            <br />
+            <div className="alergias">
+              <span className='span'>Enfermedades Cronicas</span>
+              <div className="input-action">
+              <TextField
+                id="standard-basic"
+                label=""
+                type="text"
+                size="small"
+                style={{ width: "70%" }}
+                onChange={(e) => setAlergia(e.target.value)} 
+              />
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={{ marginRight: 20 }}
+                  onClick={addAlergia}
+                >
+                  Agregar
+                </Button>
+              </div>
+            </div>
+
+            <div className="render-alergias">
+              {alergias && alergias.map((item) => (
+                <div key={item}>
+                  {item}
+                  <Button
+                    name={item}
+                    variant="outlined"
+                    color="secondary"
+                    style={{ height:'15px', border:'none' }}
+                    onClick={handleRemoveItem}
+                  >
+                    X
+                  </Button>
+                </div>
+              ))}
+            </div>
+              <br />
+            {/* ENFERMEDADES */}
+            <div className="alergias">
+              <span className='span'>Alergias</span>
+              <div className="input-action">
+              <TextField
+                id="standard-basic"
+                label=""
+                type="text"
+                size="small"
+                style={{ width: "70%" }}
+                onChange={(e) => setEnfermedad(e.target.value)}
+              />
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={{ marginRight: 20 }}
+                  onClick={() => addEnfermedad()}
+                >
+                  Agregar
+                </Button>
+              </div>
+            </div>
+
+            <div className="render-alergias">
+              {enfermedades && enfermedades.map((item) => (
+                <div key={item}>
+                  {item}
+
+                  <Button
+                    name={item}
+                    variant="outlined"
+                    color="secondary"
+                    style={{ height:'15px', border:'none' }}
+                    onClick={handleRemoveItemEnfermedad}
+                  >
+                    X
+                  </Button>
+                </div>
+              ))}
+            </div>
+           
           </form>
         </Container>
       </Modal>
@@ -153,7 +272,7 @@ const Add = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       >
         <Alert onClose={handleClose} severity="success">
-          This is a success message!
+          Se ha agregado un hijo con exito!
         </Alert>
       </Snackbar>
     </>

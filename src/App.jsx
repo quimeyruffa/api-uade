@@ -1,36 +1,28 @@
-import { Grid, makeStyles } from "@material-ui/core";
-import Add from "./components/Add";
-import Feed from "./components/Feed";
-import Leftbar from "./components/Leftbar";
-import Navbar from "./components/Navbar";
-import Rightbar from "./components/Rightbar";
-import {ReactComponent as Svg} from "./svg/manchas.svg"
-const useStyles = makeStyles((theme) => ({
-  right: {
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-}));
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import Index from './components/Index';
+import Calendario from "./components/Kids/calendar/Calendario";
+import CollapsibleTable from "./components/Kids/controls/Controles";
+import IndexKids from "./components/Kids/IndexKids";
+import IndexProfile from "./components/Profile/IndexProfile";
+import Login from "./components/SignIn/Login";
+
 
 const App = () => {
-  const classes = useStyles();
   return (
-    <div>
-      <Navbar />
-      <Grid container>
-        <Grid item sm={2} xs={2}>
-          <Leftbar />
-        </Grid>
-        <Grid item sm={7} xs={10}>
-          <Feed style={{zIndex:'10'}}/>
-        </Grid>
-        <Grid item sm={3} className={classes.right}>
-          <Rightbar />
-        </Grid>
-      </Grid>
-      <Add />
-    </div>
+    <Router >
+        <Routes>
+            <Route exact path='/login' element={ <Login />}></Route>
+            <Route exact path='/profile' element={ <IndexProfile />}></Route>
+            <Route exact path="/children" element={ <IndexKids />}> </Route>
+            <Route exact path="/calendar" element={ <Calendario/>}> </Route>
+            <Route exact path="/controls" element={ <CollapsibleTable/>}> </Route>
+            <Route exact path='/home' element={ <Index />}></Route>
+        </Routes>
+    </Router >
   );
 };
 

@@ -90,10 +90,8 @@ const Navbar = () => {
             className={classes.searchButton}
             onClick={() => setOpen(true)}
           />
-          <Avatar
-            alt="Remy Sharp"
-            src="https://images.pexels.com/photos/8647814/pexels-photo-8647814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          />
+        
+         
         </div>
       </Toolbar>
     </AppBar>
