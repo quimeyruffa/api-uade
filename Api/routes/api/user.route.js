@@ -16,8 +16,16 @@ router.post('/createChild', UserController.createChild)
 router.post('/login/', UserController.loginUser)
 router.get('/',Authorization, UserController.getUsers)
 router.post('/getChild', UserController.getChild)
+
+
+//VACCINE
 router.post('/setVaccine', UserController.setVaccineChild)
 router.post('/getVaccine', UserController.getVaccine)
+//CONTROLS
+router.post('/setControl', UserController.setControlChild)
+router.post('/getControl', UserController.getControl)
+
+
 router.post('/userByMail',  UserController.getUsersByMail)
 router.put('/', Authorization, UserController.updateUser)
 router.delete('/:id', Authorization, UserController.removeUser)

@@ -4,6 +4,7 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const Child = require('../models/Child.model');
 const Vaccine = require('../models/Vaccine.model');
+const Control = require('../models/Control.model');
 
 // Saving the context of this module inside the _the variable
 _this = this
@@ -44,7 +45,7 @@ exports.createUser = async function (user) {
         password: hashedPassword
     })
     var _details = await User.findOne({
-        email: user.email
+        dni: user.dni
     });
     if(_details === null){
 
@@ -91,7 +92,7 @@ exports.createChild = async function (child){
 exports.createVaccine = async function (vaccine){
     var newVaccine = new Vaccine({
         child:vaccine.child,
-        nameVaccine: vaccine.name,
+        nameVaccine: vaccine.nameVaccine,
         dateChild: vaccine.dateChild,
         lugar: vaccine.lugar,
         fechaVacunacion: vaccine.fechaVacunacion
@@ -105,10 +106,32 @@ exports.createVaccine = async function (vaccine){
         throw Error("Error while Creating Vaccine")
     }
 }
+ exports.createControl = async function (control) {
+     var newControl = new Control({
+        child: control.child,
+        fecha: control.fecha,
+        peso: control.peso,
+        altura: control.altura,
+        diametro: control.diametro,
+        observaciones: control.observaciones,
+        history: control.history,
+        estudios: control.estudios
+     })
 
-exports.getVaccine = async function(id){
+     try {
+        var newControl = await newControl.save()
+        return newControl._id;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Creating Control")
+    }
+ }
+exports.getVaccine = async function(id, name, fecha){
     var _details = await Vaccine.find({
-        child: id
+        child: id,
+        nameVaccine: name,
+        dateChild: fecha,
     });
     try{
         return _details;
@@ -199,4 +222,17 @@ exports.loginUser = async function (user) {
         throw Error("Error while Login User")
     }
 
+}
+
+exports.getControl = async function(child){
+    var _details = await Control.find({
+        child: child
+    });
+    try{
+        return _details;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Searching Control")
+    }
 }

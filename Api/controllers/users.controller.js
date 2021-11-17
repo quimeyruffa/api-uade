@@ -71,7 +71,7 @@ exports.createChild = async function (req, res, next) {
         telefono: req.body.telefono,
     }
 
-    try{
+    try {
         var createdChild = await UserService.createChild(Child)
         return res.status(201).json({ createdChild, message: "Succesfully Created Child" })
     } catch (e) {
@@ -81,10 +81,10 @@ exports.createChild = async function (req, res, next) {
     }
 }
 exports.getChild = async function (req, res, next) {
-  
-    try{
+
+    try {
         var searchedChild = await UserService.getChild(req.body.token)
-        return res.status(201).json({searchedChild, message: "Succesfully Searched Child" })
+        return res.status(201).json({ searchedChild, message: "Succesfully Searched Child" })
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
         console.log(e)
@@ -92,9 +92,9 @@ exports.getChild = async function (req, res, next) {
     }
 }
 exports.getVaccine = async function (req, res, next) {
-    try{
-        var searchedVaccine = await UserService.getVaccine(req.body.id)
-        return res.status(201).json({searchedVaccine, message: "Succesfully Searched Vaccine" })
+    try {
+        var searchedVaccine = await UserService.getVaccine(req.body.id, req.body.name, req.body.fecha)
+        return res.status(201).json({ searchedVaccine, message: "Succesfully Searched Vaccine" })
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
         console.log(e)
@@ -103,24 +103,56 @@ exports.getVaccine = async function (req, res, next) {
 }
 
 exports.setVaccineChild = async function (req, res, next) {
+
     var Vaccine = {
-        child:req.body.child,
-        nameVaccine: req.body.name,
+        child: req.body.child,
+        nameVaccine: req.body.nameVaccine,
         dateChild: req.body.dateChild,
         lugar: req.body.lugar,
         fechaVacunacion: req.body.fechaVacunacion
     }
-    try{
+    try {
         var createVaccine = await UserService.createVaccine(Vaccine);
         return res.status(201).json({ createVaccine, message: "Succesfully Created Vaccine" })
-    }catch (e) {
+    } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
         console.log(e)
         return res.status(400).json({ status: 400, message: "Create Vaccine was Unsuccesfull" })
     }
 
 }
+exports.setControlChild = async function (req, res, next) {
+    var Control = {
+        child: req.body.child,
+        fecha: req.body.fecha,
+        peso: req.body.peso,
+        altura: req.body.altura,
+        diametro: req.body.diametro,
+        observaciones: req.body.observaciones,
+        history: req.body.history,
+        estudios: req.body.estudios
+    }
 
+    try {
+        var createControl = await UserService.createControl(Control);
+        return res.status(200).json({ createControl, message: "Succesfully create control"})
+    }catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        console.log(e)
+        return res.status(400).json({ status: 400, message: "Create Vaccine was Unsuccesfull" })
+    }
+}
+
+exports.getControl = async function (req, res, next) {
+    try {
+        var getControl = await UserService.getControl(req.body.child)
+        return res.status(201).json({ getControl, message: "Succesfully Searched Control" })
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        console.log(e)
+        return res.status(400).json({ status: 400, message: "Searched Control was Unsuccesfull" })
+    }
+}
 
 exports.updateUser = async function (req, res, next) {
 
@@ -169,10 +201,10 @@ exports.loginUser = async function (req, res, next) {
         // Calling the Service function with the new object from the Request Body
         var loginUser = await UserService.loginUser(User);
         console.log(loginUser)
-        return res.status(201).json({ loginUser, message: "Succesfully login", status:true })
+        return res.status(201).json({ loginUser, message: "Succesfully login", status: true })
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
-        return res.status(400).json({ status: 400, message: "Invalid username or password", status:false })
+        return res.status(400).json({ status: 400, message: "Invalid username or password", status: false })
     }
 }
 
