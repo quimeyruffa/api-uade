@@ -41,30 +41,38 @@ export const NewControl = ({ open, setOpen }) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                child:idChild,
-                fecha:fecha,
-                peso:peso,
-                altura:altura,
-                diametro:diametro,
-                observaciones:observaciones,
-                history:history,
-                estudios:estudios
+                child: idChild,
+                fecha: fecha,
+                peso: peso,
+                altura: altura,
+                diametro: diametro,
+                observaciones: observaciones,
+                history: history,
+                estudios: estudios
             })
         })
             .then((res) => res.json())
-           
-    }
+            .then(() => setOpen(false))
 
-    const handleOpen = () => setOpen(true);
+    }
+    const handleRemoveItem = (e) => {
+        const name = e.target.getAttribute("name")
+        setHistory(history.filter(item => item.nombre !== name));
+    };
+
     const handleClose = () => setOpen(false);
 
-    const AddMed =()=>{
-        history.push({nombre:nombreMed, cantidad: cantidadMed, periodo: periodoMed});
+    const AddMed = () => {
+        history.push({ nombre: nombreMed, cantidad: cantidadMed, periodo: periodoMed });
     }
 
-    const AddEstudio =()=>{
-        estudios.push({nombre:nombreEstudio, resultado: resultado});
+    const AddEstudio = () => {
+        estudios.push({ nombre: nombreEstudio, resultado: resultado });
     }
+    const handleRemoveItemEstudio = (e) => {
+        const name = e.target.getAttribute("name")
+        setEstudios(estudios.filter(item => item !== name));
+    };
     return (
         <div>
             <Modal
@@ -99,19 +107,52 @@ export const NewControl = ({ open, setOpen }) => {
                     <InputGroup >
                         <input type='text' placeholder='Nombre' onChange={(e) => setNombreMed(e.target.value)} />
                         <input type='text' placeholder='Cantidad' onChange={(e) => setCantidadMed(e.target.value)} />
-                        <input type='text' placeholder='Periodo' onChange={(e) =>setPeriodoMed(e.target.value)} />
+                        <input type='text' placeholder='Periodo' onChange={(e) => setPeriodoMed(e.target.value)} />
                     </InputGroup >
-                    <button onClick={() => AddMed()}> Agregar </button>
+                    <button onClick={AddMed}> Agregar </button>
+                    <div className="render-alergias">
+                        {history && history.map((item) => (
+                            <div key={item.nombre}>
+                                {item.nombre}
+                                <Button
+                                    name={item.nombre}
+                                    variant="outlined"
+                                    color="secondary"
+                                    style={{ height: '15px', border: 'none' }}
+                                    onClick={handleRemoveItem}
+                                >
+                                    X
+                                </Button>
+                            </div>
+                        ))}
+                    </div>
                     <br /><br />
                     <span>Estudios Realizados</span>
                     <InputGroup >
                         <input type='text' placeholder='Nombre' onChange={(e) => setNombreEstudio(e.target.value)} />
                         <input type='text' placeholder='Resultado' onChange={(e) => setResultado(e.target.value)} />
                     </InputGroup >
-                    <button onClick={() => AddEstudio()}> Agregar </button>
+                    <button onClick={AddEstudio}> Agregar </button>
+                    <div className="render-alergias">
+                        {estudios && estudios.map((item) => (
+                            <div key={item.nombre}>
+                                {item.nombre}
+
+                                <Button
+                                    name={item}
+                                    variant="outlined"
+                                    color="secondary"
+                                    style={{ height: '15px', border: 'none' }}
+                                    onClick={handleRemoveItemEstudio}
+                                >
+                                    X
+                                </Button>
+                            </div>
+                        ))}
+                    </div>
                     <br /><br />
 
-                    
+
                     <button onClick={submit}>Guardar Control Pedriatico </button>
                 </Box>
             </Modal>

@@ -24,6 +24,7 @@ const SignUp = () => {
             .then((res) => res.json())
             .then((data) => {
                 alert(data.message)
+                window.location.href = '/home';
             })
     }
 

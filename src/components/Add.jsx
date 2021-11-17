@@ -2,13 +2,8 @@ import {
   Button,
   Container,
   Fab,
-  FormControlLabel,
-  FormLabel,
   makeStyles,
-  MenuItem,
   Modal,
-  Radio,
-  RadioGroup,
   Snackbar,
   TextField,
   Tooltip,
@@ -117,8 +112,7 @@ const Add = () => {
         })
          .then((res) => res.json())
          .then((data) => {
-             console.log(data.message)
-             setOpenAlert(true)
+              setOpen(false);
              setOpenAlert(false);
          })
  }

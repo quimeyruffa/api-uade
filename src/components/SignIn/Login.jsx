@@ -3,7 +3,7 @@ import { ReactComponent as SVG } from '../../svg/padreEhijo.svg';
 import { useState } from 'react';
 import './signin.css'
 import styled from 'styled-components'
-
+import {Link} from 'react-router-dom'
 const Login = () => {
 
     const [email, setEmail] = useState();
@@ -52,8 +52,8 @@ const Login = () => {
                         <label htmlFor="">Contraseña</label>
                         <input type="password" onChange={(e) => setPassword(e.target.value)} />
                         <div className='recuperar-contraseña'>
-                            <a href="">Recuperar Contraseña</a>
                         </div>
+                            <a href="/recoverPassword">Olvidaste tu contraseña?</a>
 
                         <div className="button">
                             <button onClick={submit}>
@@ -61,7 +61,7 @@ const Login = () => {
                             </button>
                         </div>
                         <div className="link">
-                            {/* <Link to='/signUp' className='short-cut-signUp'> No tenes una cuenta? Registrate</Link> */}
+                            <Link to='/register' className='short-cut-signUp'> No tenes una cuenta? Registrate</Link>
                         </div>
                     </div>
                 </div>
