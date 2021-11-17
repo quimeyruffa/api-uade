@@ -143,6 +143,16 @@ exports.setControlChild = async function (req, res, next) {
     }
 }
 
+exports.recoverPassword = async function (req, res,next) {
+    try {
+        var RecoverPassword= await UserService.recoverPassword(req.body.dni, req.body.password)
+        return res.status(201).json({ RecoverPassword, message: "Succesfully Recover Password" })
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        console.log(e)
+        return res.status(400).json({ status: 400, message: "Recover Password was Unsuccesfull" })
+    }
+}
 exports.getControl = async function (req, res, next) {
     try {
         var getControl = await UserService.getControl(req.body.child)
