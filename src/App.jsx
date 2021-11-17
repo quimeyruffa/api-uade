@@ -9,12 +9,13 @@ import CollapsibleTable from "./components/Kids/controls/Controles";
 import IndexKids from "./components/Kids/IndexKids";
 import IndexProfile from "./components/Profile/IndexProfile";
 import Login from "./components/SignIn/Login";
-
+import SignUp from "./components/SingUp/SignUp";
 
 const App = () => {
   return (
     <Router >
         <Routes>
+            <Route exact path='/register' element={ <SignUp /> }></Route>
             <Route exact path='/login' element={ <Login />}></Route>
             <Route exact path='/profile' element={ <IndexProfile />}></Route>
             <Route exact path="/children" element={ <IndexKids />}> </Route>
