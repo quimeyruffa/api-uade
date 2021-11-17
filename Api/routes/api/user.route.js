@@ -16,11 +16,13 @@ router.post('/createChild', UserController.createChild)
 router.post('/login/', UserController.loginUser)
 router.get('/',Authorization, UserController.getUsers)
 router.post('/getChild', UserController.getChild)
-
+router.post('/recoverPassword', UserController.recoverPassword)
 
 //VACCINE
 router.post('/setVaccine', UserController.setVaccineChild)
 router.post('/getVaccine', UserController.getVaccine)
+
+
 //CONTROLS
 router.post('/setControl', UserController.setControlChild)
 router.post('/getControl', UserController.getControl)

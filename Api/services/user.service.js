@@ -19,14 +19,14 @@ exports.getUsers = async function (query, page, limit) {
     }
     // Try Catch the awaited promise to handle the error 
     try {
-        console.log("Query",query)
+        console.log("Query", query)
         var Users = await User.paginate(query, options)
         // Return the Userd list that was retured by the mongoose promise
         return Users;
 
     } catch (e) {
         // return a Error message describing the reason 
-        console.log("error services",e)
+        console.log("error services", e)
         throw Error('Error while Paginating Users');
     }
 }
@@ -34,7 +34,7 @@ exports.getUsers = async function (query, page, limit) {
 exports.createUser = async function (user) {
     // Creating a new Mongoose Object by using the new keyword
     var hashedPassword = bcrypt.hashSync(user.password, 8);
-    
+
     var newUser = new User({
         name: user.name,
         lastname: user.lastname,
@@ -47,7 +47,7 @@ exports.createUser = async function (user) {
     var _details = await User.findOne({
         dni: user.dni
     });
-    if(_details === null){
+    if (_details === null) {
 
         try {
             // Saving the User 
@@ -60,15 +60,15 @@ exports.createUser = async function (user) {
             return token;
         } catch (e) {
             // return a Error message describing the reason 
-            console.log(e)    
+            console.log(e)
             throw Error("Error while Creating User")
         }
-    }else{
+    } else {
         throw Error("The User Already Exists")
     }
 }
-exports.createChild = async function (child){
-    
+exports.createChild = async function (child) {
+
     var newChild = new Child({
         parent: child.parent,
         name: child.name,
@@ -84,14 +84,14 @@ exports.createChild = async function (child){
         return savedChild._id;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Creating Child")
     }
 }
 
-exports.createVaccine = async function (vaccine){
+exports.createVaccine = async function (vaccine) {
     var newVaccine = new Vaccine({
-        child:vaccine.child,
+        child: vaccine.child,
         nameVaccine: vaccine.nameVaccine,
         dateChild: vaccine.dateChild,
         lugar: vaccine.lugar,
@@ -102,12 +102,12 @@ exports.createVaccine = async function (vaccine){
         return newVaccine._id;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Creating Vaccine")
     }
 }
- exports.createControl = async function (control) {
-     var newControl = new Control({
+exports.createControl = async function (control) {
+    var newControl = new Control({
         child: control.child,
         fecha: control.fecha,
         peso: control.peso,
@@ -116,46 +116,48 @@ exports.createVaccine = async function (vaccine){
         observaciones: control.observaciones,
         history: control.history,
         estudios: control.estudios
-     })
+    })
 
-     try {
+    try {
         var newControl = await newControl.save()
         return newControl._id;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Creating Control")
     }
- }
-exports.getVaccine = async function(id, name, fecha){
+}
+exports.getVaccine = async function (id, name, fecha) {
     var _details = await Vaccine.find({
         child: id,
         nameVaccine: name,
         dateChild: fecha,
     });
-    try{
+    try {
         return _details;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Searching Vaccine")
     }
 }
-exports.getChild = async function(token){
+
+
+exports.getChild = async function (token) {
     var _details = await Child.find({
         parent: token
     });
-    try{
+    try {
         return _details;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Searching Child")
     }
 }
-exports.updateUser = async function (user) {
-    
-    var id = {name :user.name}
+exports.recoverPassword = async function (dni, password) {
+
+    var id = { dni: dni}
 
     try {
         //Find the old User Object by the Id
@@ -168,9 +170,7 @@ exports.updateUser = async function (user) {
         return false;
     }
     //Edit the User Object
-    var hashedPassword = bcrypt.hashSync(user.password, 8);
-    oldUser.name = user.name
-    oldUser.email = user.email
+    var hashedPassword = bcrypt.hashSync(password, 8)
     oldUser.password = hashedPassword
     try {
         var savedUser = await oldUser.save()
@@ -202,11 +202,11 @@ exports.loginUser = async function (user) {
     // Creating a new Mongoose Object by using the new keyword
     try {
         // Find the User 
-        console.log("login:",user)
+        console.log("login:", user)
         var _details = await User.findOne({
             email: user.email
         });
-        
+
         var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
         if (!passwordIsValid) throw Error("Invalid username/password")
 
@@ -215,7 +215,7 @@ exports.loginUser = async function (user) {
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
-        return {token:token, user:_details};
+        return { token: token, user: _details };
 
     } catch (e) {
         // return a Error message describing the reason     
@@ -224,15 +224,15 @@ exports.loginUser = async function (user) {
 
 }
 
-exports.getControl = async function(child){
+exports.getControl = async function (child) {
     var _details = await Control.find({
         child: child
     });
-    try{
+    try {
         return _details;
     } catch (e) {
         // return a Error message describing the reason 
-        console.log(e)    
+        console.log(e)
         throw Error("Error while Searching Control")
     }
 }
