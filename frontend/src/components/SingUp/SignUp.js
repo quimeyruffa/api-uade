@@ -3,33 +3,83 @@ import { useState } from 'react';
 import { CgEnter } from 'react-icons/cg';
 import { ReactComponent as SVG } from '../../svg/parent3.svg';
 import styled from 'styled-components'
+import Alert from '@mui/material/Alert';
+import { Snackbar } from "@material-ui/core";
 const SignUp = () => {
-    const [name, setName] = useState();
-    const [lastname, setLastname] = useState();
-    const [password, setPassword] = useState();
-    const [dni, setDni] = useState();
-    const [email, setEmail] = useState();
-    const [telefono, setTelefono] = useState();
-
+    const [name, setName] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [password, setPassword] = useState('');
+    const [dni, setDni] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [openAlert, setOpenAlert] = useState(false);
+    const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const submit = async () => {
-        console.log({ name: name, lastname: lastname, password: password, dni: dni, email: email, telefono: telefono })
-        await fetch('http://localhost:4000/api/users/registration', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify
-                ({ name: name, lastname: lastname, password: password, dni: dni, email: email, telefono: telefono })
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                alert(data.message)
-                window.location.href = '/home';
+        if (name !== '' && lastname !== '' && password !== '' && dni !== '' && email !== '' && telefono !== '') {
+
+
+            await fetch('http://localhost:4000/api/users/registration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify
+                    ({ name: name, lastname: lastname, password: password, dni: dni, email: email, telefono: telefono })
             })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.message === 'The User Already Exists') {
+                        setOpenAlert(!openAlert)
+                    } else {
+
+                        setOpenAlertSuccess(!openAlertSuccess);
+                        window.location.href = '/'
+                    }
+                })
+
+        } else {
+            setOpenAlert(!openAlert)
+        }
     }
 
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpenAlert(false);
+    };
+
+    const handleCloseSuccess = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpenAlertSuccess(false);
+    };
     return (
         <>
+            <Snackbar
+                open={openAlert}
+                autoHideDuration={4000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+                <Alert onClose={handleClose} severity="error">
+                    Error al registrar el usuario, por favor intente nuevamente
+                </Alert>
+            </Snackbar>
+
+            <Snackbar
+                open={openAlertSuccess}
+                autoHideDuration={4000}
+                onClose={handleCloseSuccess}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+                <Alert onClose={handleCloseSuccess} severity="success">
+                    Usuario creado de manera exitosa!
+                </Alert>
+            </Snackbar>
             <Title>
                 <h1>Registrate para comenzar!</h1>
             </Title>

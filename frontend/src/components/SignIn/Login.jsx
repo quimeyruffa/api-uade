@@ -4,11 +4,14 @@ import { useState } from 'react';
 import './signin.css'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import Alert from '@mui/material/Alert';
+import {Snackbar} from "@material-ui/core";
 const Login = () => {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
+    const [openAlert, setOpenAlert] = useState(false);
+    
     //Login User
     const submit = async () => {
         try {
@@ -27,6 +30,9 @@ const Login = () => {
                          localStorage.setItem('email', email);
                          window.location.href = '/home';
                     }
+                    else{
+                        setOpenAlert(!openAlert)
+                    }
                 })
                 
             
@@ -37,9 +43,27 @@ const Login = () => {
     };
 
 
+    
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenAlert(false);
+  };
     return (
         <>
+         <Snackbar
+        open={openAlert}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert onClose={handleClose} severity="error">
+          El email no pertenece a un usuario existente en el sistema.
+        </Alert>
+      </Snackbar>
             <Title>
                 <h1>Bienvenido a Healthy!</h1>
             </Title>
@@ -53,7 +77,7 @@ const Login = () => {
                         <input type="password" onChange={(e) => setPassword(e.target.value)} />
                         <div className='recuperar-contraseña'>
                         </div>
-                            <a href="/recoverPassword">Olvidaste tu contraseña?</a>
+                            <a  style={{textDecoration:'none'}} href="/recoverPassword">Olvidaste tu contraseña?</a>
 
                         <div className="button">
                             <button onClick={submit}>
